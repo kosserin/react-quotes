@@ -1,0 +1,11 @@
+.quote-list {
+    padding: 3rem;
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+    gap: 2rem;
+}
+
+.quote-list p a {
+    font-weight: 500;
+}

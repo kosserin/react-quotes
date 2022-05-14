@@ -1,0 +1,30 @@
+.not-found{
+    min-height: 95vh;
+    background-color: var(--f-color);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.not-found img {
+    width: 400px;
+    max-width: 100%;
+}
+
+.not-found button {
+    background-color: var(--s-color);
+    color: var(--f-color);
+    font-weight: 600;
+    font-size: 1rem;
+    padding: 1rem 3rem;
+    cursor: pointer;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    transition: all 250ms ease-out;
+}
+
+.not-found button:hover {
+    background-color: var(--t-color);
+}
