@@ -1,0 +1,41 @@
+.new-comment {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+}
+
+.new-comment textarea {
+    background-color: rgba(0, 0, 0, .5);
+    border: none;
+    outline: none;
+    color: var(--s-color);
+    border-radius: 2px;
+    padding: 1rem;
+    font-size: .875rem;
+    resize: none;
+    width: 500px;
+    max-width: 95vw;
+}
+
+.new-comment button {
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: .75rem 2rem;
+    border-radius: 2px;
+    font-weight: 500;
+}
+
+.new-comment button.disabled-button {
+    cursor: not-allowed;
+    background-color: var(--t-color);
+    color: var(--f-color);
+}
+
+.new-comment button.error-button {
+    cursor: not-allowed;
+    background-color: rgba(255, 0, 0, .2);
+    color: var(--t-color);
+}

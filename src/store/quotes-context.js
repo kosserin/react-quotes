@@ -8,6 +8,7 @@ export const QuotesContext = React.createContext({
     addQuote: (quoteObj) => {},
     addComment: (commObj) => {},
     removeQuote: (id) => {},
+    removeComment: (id) => {},
 });
 
 export default props => {
@@ -44,8 +45,36 @@ export default props => {
         setIsLoading(false);
     }
 
+    const fetchComments = async () => {
+        try {
+        setError(null);
+        setIsLoading(true);
+        const response = await fetch("https://react-quotes-994eb-default-rtdb.europe-west1.firebasedatabase.app/comments.json", {
+            method: "GET"
+        });
+        if(!response.ok) {
+            throw new Error;
+        }
+        const data = await response.json();
+        const loadedComments = [];
+        for(const key in data) {
+            loadedComments.push({
+                id: data[key].id,
+                text: data[key].text,
+                quoteId: data[key].quoteId,
+                objectKey: key,
+            })
+        }
+        setComments(loadedComments)
+        } catch (err) {
+            setError(err.message || "Something went wrong!");
+        }
+        setIsLoading(false);
+    }
+
     useEffect(() => {
         fetchQuotes();
+        fetchComments();
     }, []);
 
     const onAddQuoteHandler = (quoteObj) => {
@@ -53,16 +82,22 @@ export default props => {
             return prevQuotes.concat(quoteObj)
         })
     }
-
-    const onAddCommentHandler = (commentsObj) => {
-        setComments(prevComments => {
-            return prevComments.push(commentsObj);
-        })
-    }
-
+    
     const onRemoveQuoteHandler = (id) => {
         setQuotes(prevQuotes => {
             return prevQuotes.filter(item => item.id !== id);
+        })
+    }
+
+    const onAddCommentHandler = (commentsObj) => {
+        setComments(prevComments => {
+            return prevComments.concat(commentsObj)
+        })
+    }
+
+    const onRemoveCommentHandler = (id) => {
+        setComments(prevComments => {
+            return prevComments.filter(item => item.id !== id);
         })
     }
 
@@ -75,6 +110,7 @@ export default props => {
             addQuote: onAddQuoteHandler,
             addComment: onAddCommentHandler,
             removeQuote: onRemoveQuoteHandler,
+            removeComment: onRemoveCommentHandler,
         }}>
         {props.children}
         </QuotesContext.Provider>

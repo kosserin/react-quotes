@@ -5,6 +5,7 @@ import NewQuote from './components/NewQuote/NewQuote';
 import NotFound from './components/NotFound/NotFound';
 import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
+import HighlightedQuote from './components/HighlightedQuote/HighlightedQuote';
 
 const App = () => {
 
@@ -13,7 +14,7 @@ const App = () => {
     <Header />
       <Routes>
         <Route path='*' element={<NotFound />} />
-
+        <Route path=':id' element={<HighlightedQuote />} />
         <Route path='/' element={<Quotes />} />
         <Route path='/new-quote' element={<NewQuote />} />
       </Routes>

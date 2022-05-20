@@ -1,4 +1,5 @@
 import React, {useState, useContext} from 'react';
+import { Link } from 'react-router-dom';
 import { QuotesContext } from '../../../../store/quotes-context';
 
 import styles from './QuoteItem.module.css';
@@ -20,7 +21,6 @@ const QuoteItem = (props) => {
           throw new Error;
       }
       const data = await response.json();
-      console.log(data);
       ctx.removeQuote(props.id);
       } catch (err) {
           setError(err.message || "Something went wrong!");
@@ -42,15 +42,12 @@ const QuoteItem = (props) => {
     removeBtnContent = error;
   }
 
-  const itemClickHandler = () => {
-    console.log('clicked')
-  }
-
   return (
-    <li onClick={itemClickHandler} id={props.id} className={styles['quote-item']}>
+    <li id={props.id} className={styles['quote-item']}>
       <p>{props.text}</p>
       <span>- {props.author}</span>
       <button className={`${isLoading && styles['disabled-button']}`} onClick={removeQuoteHandler} disabled={isLoading || error}>{removeBtnContent}</button>
+      <Link to={props.id}>See details</Link>
     </li>
   )
 }

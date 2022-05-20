@@ -48,13 +48,14 @@
     outline: none;
     height: 100px;
     font-size: 1rem;
+    resize: none;
 }
 
 .new-quote__form button {
     background-color: var(--f-color);
     color: var(--s-color);
-    font-weight: 600;
-    font-size: 1rem;
+    font-size: .875rem;
+    font-weight: 500;
     padding: 1rem 3rem;
     cursor: pointer;
     border-radius: 5px;
@@ -76,13 +77,10 @@
     color: var(--f-color);
 }
 
-.new-quote__form p {
-    text-align: center;
-    font-size: .875rem;
-}
-
-.error-message {
-    color: red;
+.new-quote button.error-button {
+    cursor: not-allowed;
+    background-color: rgb(151, 15, 15);
+    color: var(--s-color);
 }
 
 @media(max-width:768px) {

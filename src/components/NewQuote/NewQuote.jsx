@@ -18,14 +18,14 @@ const NewQuote = () => {
     try {
       setError(null);
       setIsLoading(true);
-      const textValue = textInputRef.current.value;
+      const textValue = `“${textInputRef.current.value}”`;
       const authorValue = authorInputRef.current.value;
       const uniqueId = uuid();
       const smallId = uniqueId.slice(0,8);
       const newQuoteObj = {
         id: `q${smallId}`,
         author: authorValue,
-        text: textValue
+        text: textValue,
       }
       const response = await fetch(`https://react-quotes-994eb-default-rtdb.europe-west1.firebasedatabase.app/quotes.json`, {
         method: "POST",
@@ -60,6 +60,16 @@ const NewQuote = () => {
   if(error) {
     content = error;
   }
+  
+  let buttonContent = "Add quote";
+
+  if(isLoading) {
+    buttonContent = "Loading...";
+  }
+
+  if(error) {
+    buttonContent = error;
+  }
 
   return (
     <section className={styles['new-quote']}>
@@ -72,8 +82,7 @@ const NewQuote = () => {
         <label htmlFor='qText'>Enter quote text:</label>
         <textarea ref={textInputRef} id="qText" required />
       </div>
-      <button className={`${isLoading && styles['disabled-button']}`} disabled={isLoading} type="submit">Add quote</button>
-      <p className={`${error && styles['error-message']}`}>{content}</p>
+      <button className={`${isLoading && styles['disabled-button']} ${error && styles['error-button']}`} disabled={isLoading} type="submit">{buttonContent}</button>
     </form>
     </section>
   )

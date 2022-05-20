@@ -1,0 +1,74 @@
+.highlighted-quote {
+    padding: 3rem 10vw;
+
+}
+
+.highlighted-quote > p {
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: 500;
+}
+
+.highlighted-quote > span {
+    width: 100%;
+    display: block;
+    text-align: right;
+    font-style: italic;
+}
+
+.highlighted-quote .actions {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.highlighted-quote .actions a {
+    text-decoration: none;
+    padding: .75rem 2rem;
+    border-radius: 2px;
+    font-size: .875rem;
+    font-weight: 500;
+    background-color: transparent;
+    color: var(--s-color);
+}
+
+.highlighted-quote .actions a:hover {
+    transition: 250ms ease-out;
+    color: var(--t-color);
+}
+
+.highlighted-quote ul {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    list-style: none;
+    margin-top: 2rem;
+}
+
+.highlighted-quote ul li {
+    background-color: rgba(255, 255, 255, .1);
+    padding: 1rem;
+    border-radius: 2px;
+    transition: 250ms ease-out;
+    cursor: pointer;
+}
+
+.highlighted-quote ul li:hover {
+    background-color: rgba(255, 0, 0, .2);
+}
+
+.highlighted-quote p {
+    text-align: center;
+}
+
+.highlighted-quote p.error-text {
+    color: rgba(255, 0, 0, 1);
+}
+
+@media(max-width:768px) {
+    .highlighted-quote {
+        padding: 5rem 2.5vw;
+    }
+}

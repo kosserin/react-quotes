@@ -50,6 +50,18 @@
     color: var(--f-color);
 }
 
+.quote-item > a {
+    text-decoration: none;
+    color: var(--s-color);
+    font-size: 1rem;
+    font-weight: 500;
+    transition: 250ms ease-out;
+}
+
+.quote-item > a:hover {
+    color: var(--t-color);
+}
+
 @media(max-width: 768px) {
     .quote-item {
         padding: 1rem;
@@ -57,9 +69,11 @@
 
     .quote-item p {
         padding: 0 1rem;
+        font-size: 1.125rem;
     }
 
     .quote-item span {
         margin-bottom: 2rem;
+        font-size: .875rem;
     }
 }
