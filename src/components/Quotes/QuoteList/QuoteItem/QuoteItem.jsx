@@ -42,8 +42,12 @@ const QuoteItem = (props) => {
     removeBtnContent = error;
   }
 
+  const itemClickHandler = () => {
+    console.log('clicked')
+  }
+
   return (
-    <li id={props.id} className={styles['quote-item']}>
+    <li onClick={itemClickHandler} id={props.id} className={styles['quote-item']}>
       <p>{props.text}</p>
       <span>- {props.author}</span>
       <button className={`${isLoading && styles['disabled-button']}`} onClick={removeQuoteHandler} disabled={isLoading || error}>{removeBtnContent}</button>
