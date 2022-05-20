@@ -8,10 +8,9 @@ import styles from './QuoteList.module.css';
 const QuoteList = () => {
 
     const ctx = useContext(QuotesContext);
-    console.log(ctx)
 
     let content = ctx.quotes.map(quote => {
-      return <QuoteItem key={quote.id} id={quote.id} text={quote.text} author={quote.author} />
+      return <QuoteItem key={quote.id} id={quote.id} text={quote.text} author={quote.author} objectKey={quote.objectKey} />
   })
   
   if(ctx.quotes.length === 0) {

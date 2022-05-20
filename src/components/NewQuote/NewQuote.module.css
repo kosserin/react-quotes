@@ -72,7 +72,7 @@
 
 .new-quote__form button.disabled-button {
     cursor: not-allowed;
-    background-color: var(--s-color);
+    background-color: var(--t-color);
     color: var(--f-color);
 }
 

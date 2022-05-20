@@ -19,6 +19,14 @@
 
 @media(max-width:768px) {
     .quotes {
-        padding: 5rem 5vw;
+        padding: 5rem 2.5vw;
+    }
+
+    .quotes > h1 {
+        font-size: 1.5rem;
+    }
+
+    .quotes > h3 {
+        font-size: 1rem;
     }
 }

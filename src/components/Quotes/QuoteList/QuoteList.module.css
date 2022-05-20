@@ -9,3 +9,9 @@
 .quote-list p a {
     font-weight: 500;
 }
+
+@media(max-width: 768px) {
+    .quote-list {
+        padding: 0;
+    }
+}

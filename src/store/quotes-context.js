@@ -7,6 +7,7 @@ export const QuotesContext = React.createContext({
     isLoading: false,
     addQuote: (quoteObj) => {},
     addComment: (commObj) => {},
+    removeQuote: (id) => {},
 });
 
 export default props => {
@@ -32,7 +33,8 @@ export default props => {
             loadedQuotes.push({
                 id: data[key].id,
                 text: data[key].text,
-                author: data[key].author
+                author: data[key].author,
+                objectKey: key,
             })
         }
         setQuotes(loadedQuotes)
@@ -58,6 +60,12 @@ export default props => {
         })
     }
 
+    const onRemoveQuoteHandler = (id) => {
+        setQuotes(prevQuotes => {
+            return prevQuotes.filter(item => item.id !== id);
+        })
+    }
+
     return (
         <QuotesContext.Provider value={{
             quotes: quotes,
@@ -66,6 +74,7 @@ export default props => {
             isLoading: isLoading,
             addQuote: onAddQuoteHandler,
             addComment: onAddCommentHandler,
+            removeQuote: onRemoveQuoteHandler,
         }}>
         {props.children}
         </QuotesContext.Provider>

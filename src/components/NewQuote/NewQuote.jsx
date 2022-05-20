@@ -14,13 +14,22 @@ const NewQuote = () => {
   const authorInputRef = useRef();
   const navigate = useNavigate();
 
-  const sendQuote = async (obj) => {
+  const sendQuote = async () => {
     try {
       setError(null);
       setIsLoading(true);
-      const response = await fetch("https://react-quotes-994eb-default-rtdb.europe-west1.firebasedatabase.app/quotes.json", {
+      const textValue = textInputRef.current.value;
+      const authorValue = authorInputRef.current.value;
+      const uniqueId = uuid();
+      const smallId = uniqueId.slice(0,8);
+      const newQuoteObj = {
+        id: `q${smallId}`,
+        author: authorValue,
+        text: textValue
+      }
+      const response = await fetch(`https://react-quotes-994eb-default-rtdb.europe-west1.firebasedatabase.app/quotes.json`, {
         method: "POST",
-        body: JSON.stringify(obj),
+        body: JSON.stringify(newQuoteObj),
         headers: {
           "Content-Type": "application/json"
         }
@@ -28,6 +37,8 @@ const NewQuote = () => {
       if(!response.ok) {
         throw new Error;
       }
+      const data = await response.json();
+      ctx.addQuote({...newQuoteObj, objectKey: data.name});
       navigate("/");
     } catch (err) {
       setError(err.message || "Something went wrong!");
@@ -37,17 +48,7 @@ const NewQuote = () => {
 
   const onQuoteSubmitHandler = e => {
     e.preventDefault();
-    const textValue = textInputRef.current.value;
-    const authorValue = authorInputRef.current.value;
-    const uniqueId = uuid();
-    const smallId = uniqueId.slice(0,8);
-    const newQuoteObj = {
-      id: `q${smallId}`,
-      author: authorValue,
-      text: textValue
-    }
-    ctx.addQuote(newQuoteObj);
-    sendQuote(newQuoteObj);
+    sendQuote();
   }
 
   let content = "";

@@ -1,4 +1,5 @@
 .quote-item {
+    position: relative;
     padding: 2rem;
     width: 100%;
     background-color: rgba(0, 0, 0, .5);
@@ -22,4 +23,43 @@
     margin-top: 5px;
     font-size: 1.125rem;
     font-style: italic;
+    margin-bottom: 1rem;
+}
+
+.quote-item button {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    background-color: #430808;
+    color: var(--s-color);
+    border: none;
+    outline: none;
+    border-radius: 2px;
+    padding: .75rem 2rem;
+    cursor: pointer;
+    transition: 250ms ease-out;
+}
+
+.quote-item button:hover {
+    background-color: #5d0505;
+}
+
+.quote-item button.disabled-button {
+    cursor: not-allowed;
+    background-color: var(--t-color);
+    color: var(--f-color);
+}
+
+@media(max-width: 768px) {
+    .quote-item {
+        padding: 1rem;
+    }
+
+    .quote-item p {
+        padding: 0 1rem;
+    }
+
+    .quote-item span {
+        margin-bottom: 2rem;
+    }
 }
